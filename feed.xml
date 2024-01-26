@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Chandru Subramanian</title>
+    <description>A few experiments, some notes, and miscellaneous writing.</description>
+    <link></link>
+    <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
+    
+      <item>
+        <title>How this blog was made</title>
+        <description>&lt;p&gt;This blog is created using jekyll and is hosted for free on GitHub pages. It uses Bradley Taunt’s &lt;a href=&quot;https://github.com/bradleytaunt/ET-Jekyll&quot;&gt;ET-Jekyll&lt;/a&gt; theme.&lt;/p&gt;
+
+&lt;p&gt;Setting up a blog is not difficult and you should create one. Rachel Thomas has an extremely well-written post on &lt;a href=&quot;https://medium.com/@racheltho/why-you-yes-you-should-blog-7d2544ac1045&quot;&gt;why you should blog&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;you-should-probably-not-self-host&quot;&gt;You should probably not self-host&lt;/h2&gt;
+&lt;p&gt;It is fun to setup software and host your own blog. In 2024, setting up wordpress is a commoditized skill. Self-hosting work is a fun procrastination. It will not make your writing better.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Motion makes you feel like you’re getting things done. But really, you’re just preparing to get something done. When preparation becomes a form of procrastination, you need to change something. You don’t want to merely be planning. You want to be practicing.&lt;span class=&quot;marginnote&quot;&gt;Clear, James. &lt;a href=&quot;https://jamesclear.com/taking-action&quot;&gt;&lt;em&gt;Taking Action.&lt;/em&gt;&lt;/a&gt; jamesclear.com, 20 Jan. 2020.&lt;/span&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;You should focus on publishing content.&lt;/p&gt;
+
+&lt;h2 id=&quot;you-should-probably-not-use-medium&quot;&gt;You should probably not use medium&lt;/h2&gt;
+&lt;p&gt;Medium is a paywalled online publishing platform for reading authored articles. It is a marketplace for authors to publish content and get paid for it. My goal is to publish content - I don’t want people to pay for information that I would gladly give them.&lt;/p&gt;
+
+&lt;p&gt;At this stage of my career, I find less of a need for public addulation. I also don’t want to build a large following that I can monetize. I would rather have a nuanced and respectful conversation. Drop me a note at &lt;a href=&quot;mailto:comments@chandru.blog&quot;&gt;comments@chandru.blog&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;you-should-host-on-github-pages&quot;&gt;You should host on github pages&lt;/h2&gt;
+&lt;p&gt;Github is easy to setup, the limits are reasonable, and it is free. Paying companies depend on GitHub so it is well maintained and monitored.&lt;/p&gt;
+
+&lt;p&gt;In essence, GitHub pages is a specially named public git repository. Any markdown content in this repo will be rendered automatically by GitHub. Markdown takes away the temptation to tinker with typography and layout.&lt;/p&gt;
+
+&lt;h2 id=&quot;a-few-easy-steps&quot;&gt;A few easy steps&lt;/h2&gt;
+&lt;p&gt;I assume that you have a basic understanding of git and GitHub. I use the GitHub app on macos to simplify git operations.&lt;/p&gt;
+
+&lt;h3 id=&quot;setup-github-pages&quot;&gt;Setup GitHub Pages&lt;/h3&gt;
+&lt;p&gt;Excellent step by step documentation is available &lt;a href=&quot;https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site&quot;&gt;GitHub docs&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I use two additional repositories for my work.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;A private fork of the theme that I use.&lt;/li&gt;
+  &lt;li&gt;A private &lt;em&gt;content&lt;/em&gt; repo for storing my content. I follow a standard developer workflow for drafting documents.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;install-jekyll-for-authoring&quot;&gt;Install jekyll for authoring&lt;/h3&gt;
+
+&lt;h3 id=&quot;optional-setup-a-custom-domain&quot;&gt;Optional: setup a custom domain&lt;/h3&gt;
+</description>
+        <pubDate>Fri, 26 Jan 2024 00:00:00 -0500</pubDate>
+        <link>//how-this-blog-was-made</link>
+        <guid isPermaLink="true">//how-this-blog-was-made</guid>
+      </item>
+    
+      <item>
+        <title>A simple guide to extraordinary management</title>
+        <description>&lt;p&gt;This guide will help you become a good manager. The linked essays, tactics, and tools will help you will get there efficiently and quickly. Being a good manager requires mastery of three competencies.&lt;/p&gt;
+
+&lt;p&gt;As a manager, your first competency is to accomplish a goal by directing individuals. The second, is to ensure that your team remains engaged and feels fulfilled. You should expect to spend 80-90% of your attention to developing these two. Excellence as a leader requires the addition of a third competency.&lt;/p&gt;
+
+&lt;p&gt;The third competency is strategy. Strategy, at its core, is four things&lt;span class=&quot;marginnote&quot;&gt;Rumelt, Richard P. &lt;em&gt;Good Strategy, Bad Strategy: The Difference and Why It Matters&lt;/em&gt;. Crown Business, 2011.&lt;/span&gt;:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;An analysis of the situation to identify opportunities.&lt;/li&gt;
+  &lt;li&gt;Identifying the areas where your capabilities exceed the constraints of the problems,&lt;/li&gt;
+  &lt;li&gt;Building a guiding policy that maximizes your advantage.&lt;/li&gt;
+  &lt;li&gt;And executing specific missions in accordance to the policy.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;you-should-defer-strategy&quot;&gt;You should defer strategy&lt;/h2&gt;
+&lt;p&gt;Strategy is difficult. It is risky. If you don’t know how to execute flawlessly as a manager, trying to learn strategy will drive you nuts. Common internet wisdom like finding your why&lt;span class=&quot;marginnote&quot;&gt;Sinek, Simon. &lt;em&gt;Start with Why: How Great Leaders Inspire Everyone to Take Action&lt;/em&gt;. Penguin Books, 2009.&lt;br /&gt;&lt;br /&gt;Collins, James C., and Jerry I. Porras. &lt;em&gt;Built to Last: Successful Habits of Visionary Companies&lt;/em&gt;. HarperBusiness, 1994.&lt;/span&gt;, defining core-values, defining your BHAG, etc. is too fuzzy to be of practical use. Repeated failures with strategy is demoralizing for managers still learning the craft.&lt;/p&gt;
+
+&lt;p&gt;Repeating grand platitudes and binge-watching TED talks might feel satisfying (TED talks, as staged performances, aim for resonance) but they don’t contribute meaningfully to real growth. Becoming a good manager means repeatedly doing uncomfortable work of managing people till it becomes automatic.&lt;/p&gt;
+
+&lt;h2 id=&quot;you-already-know-how-to-do-this&quot;&gt;You already know how to do this&lt;/h2&gt;
+&lt;p&gt;I want to convince you that managing people is straightforward. And I want to convince you that you already know how to manage people. Of course, there are skills, best-practices, tools, frameworks, mindsets, etc. that you can (and should) develop. But if you have ordered at a restaurant, you know how to manage people.&lt;/p&gt;
+
+&lt;p&gt;Imagine you are ordering food at a restaurant. You analyze options and constrain them (specific food preferences, diet considerations, price etc.), you identify criteria for success (temperature of meat, customizations), you effectively communicate this (“I’m in a hurry, salad instead of fries, dressing on the side, hold cheese”) and you delegate. If your food doesn’t show up or shows up wrong, you provide feedback and/or escalate. Once the food arrives and is eaten, you evaluate performance and manage compensation (pay the bill and based on the quality of the meal and service). Importantly, you do all of this instinctively. Being a manager means extending this model to your professional life. Simple, but not trivial.&lt;/p&gt;
+
+&lt;p&gt;But first, you’ll need a plan to learn some skills.&lt;/p&gt;
+
+&lt;h2 id=&quot;become-a-good-manager-in-4-steps&quot;&gt;Become a good manager in 4 steps&lt;/h2&gt;
+
+&lt;p&gt;If you are still reading, you’ve likely picked up that I believe managing people is more craft than art. Importantly, it is a set of skills that can learned by repetitive practice. Our goal is to acquire these skills quickly and efficiently. Negative results should drive improvement in subsequent iterations.&lt;/p&gt;
+
+&lt;p&gt;The remainder of this series is organized in four parts:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;&lt;a href=&quot;&quot;&gt;Don’t commit unforced errors&lt;/a&gt;. Avoid mistakes and you are automatically ahead.&lt;/li&gt;
+  &lt;li&gt;Get good at fundamental tactical skills. &lt;a href=&quot;&quot;&gt;Learn to delegate&lt;/a&gt; and &lt;a href=&quot;&quot;&gt;learn to provide feedback&lt;/a&gt;. You will get better at these quickly and they will be immediately useful. Your goal should be to make this muscle memory.&lt;/li&gt;
+  &lt;li&gt;Next, we talk about &lt;a href=&quot;&quot;&gt;prioritization&lt;/a&gt;, &lt;a href=&quot;&quot;&gt;decision-making&lt;/a&gt;, and &lt;a href=&quot;&quot;&gt;communication&lt;/a&gt;. These (especially communication) underpin manager excellence. This is where competence will shift you into an influential leader.&lt;/li&gt;
+  &lt;li&gt;Finally, &lt;a href=&quot;&quot;&gt;strategy&lt;/a&gt;. You are moving from science to art. I strongly recommending coming to this when you have (really, really) internalized the first three. You probably shouldn’t read these now.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;simple-but-not-easy&quot;&gt;Simple but not easy&lt;/h2&gt;
+&lt;p&gt;Anticipate mistakes and avoid them. Practice delegation and prioritization - these add immediate benefit. Learn to communicate effectively. Master these core skills before you work on strategy and vision.&lt;/p&gt;
+
+&lt;p&gt;Extraordinary management is rare but the path to it is ordinary.&lt;/p&gt;
+</description>
+        <pubDate>Fri, 19 Jan 2024 00:00:00 -0500</pubDate>
+        <link>//be-an-extraordinary-manager</link>
+        <guid isPermaLink="true">//be-an-extraordinary-manager</guid>
+      </item>
+    
+  </channel>
+</rss>
