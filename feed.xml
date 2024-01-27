@@ -8,9 +8,11 @@
     
       <item>
         <title>How this blog was made</title>
-        <description>&lt;p&gt;This blog is created using jekyll and is hosted for free on GitHub pages. It uses Bradley Taunt’s &lt;a href=&quot;https://github.com/bradleytaunt/ET-Jekyll&quot;&gt;ET-Jekyll&lt;/a&gt; theme.&lt;/p&gt;
+        <description>&lt;p&gt;Setting up a blog is not difficult and you should create one. This blog is created using jekyll and is hosted for free on GitHub pages. It uses Bradley Taunt’s &lt;a href=&quot;https://github.com/bradleytaunt/ET-Jekyll&quot;&gt;ET-Jekyll&lt;/a&gt; theme.&lt;/p&gt;
 
-&lt;p&gt;Setting up a blog is not difficult and you should create one. Rachel Thomas has an extremely well-written post on &lt;a href=&quot;https://medium.com/@racheltho/why-you-yes-you-should-blog-7d2544ac1045&quot;&gt;why you should blog&lt;/a&gt;.&lt;/p&gt;
+&lt;!--more--&gt;
+
+&lt;p&gt;Rachel Thomas has an extremely well-written post on &lt;a href=&quot;https://medium.com/@racheltho/why-you-yes-you-should-blog-7d2544ac1045&quot;&gt;why you should blog&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h2 id=&quot;you-should-probably-not-self-host&quot;&gt;You should probably not self-host&lt;/h2&gt;
 &lt;p&gt;It is fun to setup software and host your own blog. In 2024, setting up wordpress is a commoditized skill. Self-hosting work is a fun procrastination. It will not make your writing better.&lt;/p&gt;
@@ -24,28 +26,40 @@
 &lt;h2 id=&quot;you-should-probably-not-use-medium&quot;&gt;You should probably not use medium&lt;/h2&gt;
 &lt;p&gt;Medium is a paywalled online publishing platform for reading authored articles. It is a marketplace for authors to publish content and get paid for it. My goal is to publish content - I don’t want people to pay for information that I would gladly give them.&lt;/p&gt;
 
-&lt;p&gt;At this stage of my career, I find less of a need for public addulation. I also don’t want to build a large following that I can monetize. I would rather have a nuanced and respectful conversation. Drop me a note at &lt;a href=&quot;mailto:comments@chandru.blog&quot;&gt;comments@chandru.blog&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;At this stage of my career, I find less need for public addulation. I also don’t want to build a large following that I can monetize. My preference is contempt-free, nuanced, and respectful conversation. Drop me a note at &lt;a href=&quot;mailto:comments@chandru.blog&quot;&gt;comments@chandru.blog&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;you-should-host-on-github-pages&quot;&gt;You should host on github pages&lt;/h2&gt;
 &lt;p&gt;Github is easy to setup, the limits are reasonable, and it is free. Paying companies depend on GitHub so it is well maintained and monitored.&lt;/p&gt;
 
 &lt;p&gt;In essence, GitHub pages is a specially named public git repository. Any markdown content in this repo will be rendered automatically by GitHub. Markdown takes away the temptation to tinker with typography and layout.&lt;/p&gt;
 
+&lt;h2 id=&quot;you-should-use-jekyll&quot;&gt;You should use jekyll&lt;/h2&gt;
+&lt;p&gt;Jekyll is a static site generator. It takes markdown pages and renders them into static html. Once converted, these files can be hosted on any webserver (such as GitHub pages).&lt;/p&gt;
+
+&lt;h2 id=&quot;you-shoud-do-the-jekyll-tutorial&quot;&gt;You shoud do the jekyll tutorial&lt;/h2&gt;
+&lt;p&gt;Doing tutorials feels tedious. But a few minutes spent on &lt;a href=&quot;https://jekyllrb.com/docs/step-by-step/01-setup/&quot;&gt;this tutorial&lt;/a&gt; will give you an understanding of the terrain; it will make your journey easier.&lt;/p&gt;
+
+&lt;p&gt;If you aren’t familiar with the ruby ecosystem, I would suggest that you understand common commands for the ruby package manager, &lt;a href=&quot;https://bundler.io&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bundle&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+
 &lt;h2 id=&quot;a-few-easy-steps&quot;&gt;A few easy steps&lt;/h2&gt;
-&lt;p&gt;I assume that you have a basic understanding of git and GitHub. I use the GitHub app on macos to simplify git operations.&lt;/p&gt;
+&lt;p&gt;I assume that you have a basic understanding of git and GitHub. The git cli is powerful but I tend to use &lt;a href=&quot;https://desktop.github.com&quot;&gt;GitHub Desktop&lt;/a&gt; for more complex operations.&lt;/p&gt;
 
 &lt;h3 id=&quot;setup-github-pages&quot;&gt;Setup GitHub Pages&lt;/h3&gt;
 &lt;p&gt;Excellent step by step documentation is available &lt;a href=&quot;https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site&quot;&gt;GitHub docs&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;I use two additional repositories for my work.&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;A private fork of the theme that I use.&lt;/li&gt;
-  &lt;li&gt;A private &lt;em&gt;content&lt;/em&gt; repo for storing my content. I follow a standard developer workflow for drafting documents.&lt;/li&gt;
-&lt;/ul&gt;
+&lt;h3 id=&quot;repos&quot;&gt;Repos&lt;/h3&gt;
+&lt;p&gt;GitHub has the ability to &lt;a href=&quot;https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/about-github-pages-and-jekyll&quot;&gt;detect jekyll configs and render&lt;/a&gt; html for you. However, I prefer to locally render markdown into html and then push that out to GitHub.&lt;/p&gt;
 
-&lt;h3 id=&quot;install-jekyll-for-authoring&quot;&gt;Install jekyll for authoring&lt;/h3&gt;
+&lt;p&gt;I prefer to keep my working copy in a different repo than the GitHub pages. My workflow looks something like this:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Use the working repo for authoring and generating content. Use git branching, merging, PRs for managing versions.&lt;/li&gt;
+  &lt;li&gt;Generate the static content locally.&lt;/li&gt;
+  &lt;li&gt;Merge into the GitHub pages repo and push content to publish.&lt;/li&gt;
+&lt;/ol&gt;
 
 &lt;h3 id=&quot;optional-setup-a-custom-domain&quot;&gt;Optional: setup a custom domain&lt;/h3&gt;
+&lt;p&gt;This is probably the most complex portion of all of the setup. But it is isn’t that difficult. The instructions on &lt;a href=&quot;https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site&quot;&gt;GitHub docs&lt;/a&gt; are excellent.&lt;/p&gt;
 </description>
         <pubDate>Fri, 26 Jan 2024 00:00:00 -0500</pubDate>
         <link>//how-this-blog-was-made</link>
@@ -53,8 +67,10 @@
       </item>
     
       <item>
-        <title>A simple guide to extraordinary management</title>
+        <title>Four steps to extraordinary management</title>
         <description>&lt;p&gt;This guide will help you become a good manager. The linked essays, tactics, and tools will help you will get there efficiently and quickly. Being a good manager requires mastery of three competencies.&lt;/p&gt;
+
+&lt;!--more--&gt;
 
 &lt;p&gt;As a manager, your first competency is to accomplish a goal by directing individuals. The second, is to ensure that your team remains engaged and feels fulfilled. You should expect to spend 80-90% of your attention to developing these two. Excellence as a leader requires the addition of a third competency.&lt;/p&gt;
 
@@ -87,7 +103,7 @@
   &lt;li&gt;&lt;a href=&quot;&quot;&gt;Don’t commit unforced errors&lt;/a&gt;. Avoid mistakes and you are automatically ahead.&lt;/li&gt;
   &lt;li&gt;Get good at fundamental tactical skills. &lt;a href=&quot;&quot;&gt;Learn to delegate&lt;/a&gt; and &lt;a href=&quot;&quot;&gt;learn to provide feedback&lt;/a&gt;. You will get better at these quickly and they will be immediately useful. Your goal should be to make this muscle memory.&lt;/li&gt;
   &lt;li&gt;Next, we talk about &lt;a href=&quot;&quot;&gt;prioritization&lt;/a&gt;, &lt;a href=&quot;&quot;&gt;decision-making&lt;/a&gt;, and &lt;a href=&quot;&quot;&gt;communication&lt;/a&gt;. These (especially communication) underpin manager excellence. This is where competence will shift you into an influential leader.&lt;/li&gt;
-  &lt;li&gt;Finally, &lt;a href=&quot;&quot;&gt;strategy&lt;/a&gt;. You are moving from science to art. I strongly recommending coming to this when you have (really, really) internalized the first three. You probably shouldn’t read these now.&lt;/li&gt;
+  &lt;li&gt;Finally, &lt;a href=&quot;&quot;&gt;strategy&lt;/a&gt;. You are moving from science to art. I strongly recommending coming to this when you have (really, really) internalized the first three.&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;h2 id=&quot;simple-but-not-easy&quot;&gt;Simple but not easy&lt;/h2&gt;
@@ -96,8 +112,35 @@
 &lt;p&gt;Extraordinary management is rare but the path to it is ordinary.&lt;/p&gt;
 </description>
         <pubDate>Fri, 19 Jan 2024 00:00:00 -0500</pubDate>
-        <link>//be-an-extraordinary-manager</link>
-        <guid isPermaLink="true">//be-an-extraordinary-manager</guid>
+        <link>//four-steps-to-extraordinary-management</link>
+        <guid isPermaLink="true">//four-steps-to-extraordinary-management</guid>
+      </item>
+    
+      <item>
+        <title>I prefer paper, maybe you should too</title>
+        <description>&lt;p&gt;I spent a lot of my life trying to master spencerian cursive. I never got any good at it. I use block capitals and use short phrases (3-5 words). I use a cheap mechanical pencil and an excellent hi-polymer eraser. 
+&lt;!--more--&gt;&lt;/p&gt;
+
+&lt;p&gt;Even with all of the electronic options, I keep returning to paper.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Paper is distraction free&lt;/li&gt;
+  &lt;li&gt;It forces prioritization (a sheet of paper has a finite size)&lt;/li&gt;
+  &lt;li&gt;You see everything at-once. Edits are easy and quick. You can (and should) color outside the lines.&lt;/li&gt;
+  &lt;li&gt;Writing by hand makes you smarter&lt;/li&gt;
+  &lt;li&gt;You can fold it and put it in your wallet.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;There is no shortage of apps for phones and laptops that do magical organizational things. YMMV but they don’t work for me mostly for the following reasons:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;On my phone, I have a choice between working on my goals (hard) and browsing the internet (fun). I usually end up choosing instant gratification over valuable.&lt;/li&gt;
+  &lt;li&gt;The keyboard takes up half the screen and at any point I am zoomed in too close to be able to see the full picture. Easy to lose track of what is important and go back to binging hackernews.&lt;/li&gt;
+  &lt;li&gt;Making edits is high-friction. Zoom in, scroll, click to edit, type&lt;/li&gt;
+  &lt;li&gt;They provide customizations and too many options. I get distracted easily and spend too much time thinking about serif vs non-serif fonts for optimal readability.&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        <pubDate>Wed, 06 Dec 2023 00:00:00 -0500</pubDate>
+        <link>//i-prefer-paper-maybe-you-should-too</link>
+        <guid isPermaLink="true">//i-prefer-paper-maybe-you-should-too</guid>
       </item>
     
   </channel>
