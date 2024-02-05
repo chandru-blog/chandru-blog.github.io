@@ -1,0 +1,92 @@
+<!DOCTYPE html><html lang="en" dir="ltr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta http-equiv="X-UA-Compatible" content="ie=edge"><title>An Overengineered Morse Code Key | Chandru Subramanian</title><meta name="description" content="An over-engineered morse-code key"><link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"><link rel="icon" href="/favicon.ico" type="image/x-icon"><link href='/feed.xml' rel='alternate' type='application/atom+xml'><link rel="canonical" href="/blinkesp"><link rel="stylesheet" href="/style.css"><body><main><h2 class="title">Chandru Subramanian</h2><h4>A few experiments, some notes, and miscellaneous writing.</h4><nav class="sans"> <input class="menu-btn" type="checkbox" id="menu-btn" /><p><label class="menu-icon" for="menu-btn">Menu</label></p><ul class="site-nav"><li><a href="/">About</a><li><a href="/management">Management</a><li><a href="/articles">Articles</a><li><a href="/tech">Fun</a> <!--<li><a href="/feed.xml">RSS</a> --></ul></nav><article><h1>An Overengineered Morse Code Key</h1><p class="subtitle">Jan 19, 2024</p><p>Blinking LEDs on esp8286 is the <em>hello-world</em> of embedded programming. This got boring really quick. <!--more--></p><p>I inherited my grandpa’s telegraphy key recently, and it got me thinking: why not build a WiFi-enabled telegraph key that would receive words via HTTP and then flash them.</p><p>My objective is to learn C++ so the goal is pristine C++ code.</p><h2 id="what-is-morse">What is Morse</h2><p><a href="https://en.wikipedia.org/wiki/Morse_code">Morse code</a> is an early method to encode text characters as sequences of two signal durations: the short signal, <code class="language-plaintext highlighter-rouge">dit</code> (usually represented by a dot), and the longer signal <code class="language-plaintext highlighter-rouge">dah</code> (usually represented by a dash).</p><p>For example, the letter S is represented as the sequence: <code class="language-plaintext highlighter-rouge">dit</code> <code class="language-plaintext highlighter-rouge">dit</code> <code class="language-plaintext highlighter-rouge">dit</code> (or, <code class="language-plaintext highlighter-rouge">. . .</code>). The letter O (oh) is represented by the sequence: <code class="language-plaintext highlighter-rouge">dah</code> <code class="language-plaintext highlighter-rouge">dah</code> <code class="language-plaintext highlighter-rouge">dah</code> (or, <code class="language-plaintext highlighter-rouge">- - -</code>). The international sequence for SOS is: <code class="language-plaintext highlighter-rouge">. . . - - - . . .</code>.</p><h2 id="system">System</h2><p>I built this on a NodeMCU development board for no special reason other than I had one in my inventory. The esp8266 runs a full WiFi stack and an HTTP server. We use the D7 GPIO pin to attach an LED. Issuing a <code class="language-plaintext highlighter-rouge">GET</code> on <code class="language-plaintext highlighter-rouge">/morse/_text_&gt;</code> will cause the LED to flash the message in Morse.</p><p>The Arduino library layer is excellent and takes care of a lot of annoying bits in embedded programming. For most of my services, I include the following. It is bonkers how much we can get for free with a few includes.</p><div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#include &lt;Arduino.h&gt;
+#include &lt;ESP8266WiFi.h&gt;
+#include &lt;ESP8266WebServer.h&gt;
+
+/* MDNS - support for local discovery */
+#include &lt;ESP8266mDNS.h&gt;
+
+/* time is hard on embedded devices */
+#include &lt;NTPClient.h&gt;
+#include &lt;WiFiUdp.h&gt;
+</code></pre></div></div><h2 id="basic-setup">Basic setup</h2><p>Setting up the esp to run a webserver is surprisingly easy. Configure WiFi and launch the webserver configured with some callbacks.</p><h3 id="configuring-wifi">Configuring WiFi</h3><div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/* turn the radio and listen for connections */
+WiFi.mode(WIFI_STA);
+WiFi.begin(ssid, password);
+while (WiFi.status() != WL_CONNECTED) delay(100);
+
+/* enable multi-cast DNS (mdns) */
+if (MDNS.begin(name)) {
+    Serial.print(name);
+    Serial.print(".local");
+} else {
+    Serial.print(WiFi.localIP());
+}
+</code></pre></div></div><h3 id="handling-http-servers">Handling HTTP servers</h3><p>Surprisingly setting up the webserver is easy because of the extremely well maintained ESP8266WebServer library.</p><div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/* Yup global variable! */
+ESP8266WebServer server(80);
+
+/* register callback on "/" */
+server.on(
+    F("/"), []()
+    { server.send(200, F("text/plain"), F("what hath god wrought")); });
+
+/* The F macro puts this in flash memory so we conserve RAM */
+</code></pre></div></div><h2 id="programming-notes">Programming notes</h2><p>Reconnecting with C++ programming is refreshing. Operator overloading is elegant and powerful. It is <a href="https://en.wikipedia.org/wiki/Type_safety">TypeSafe</a>. Python is nice but seems a little high-level for getting close to the processor. I am not masochistic enough (yet) to write assembler.</p><h3 id="storing-encoding-of-the-sequences">Storing encoding of the sequences</h3><p>Since the esp is tight on memory, we use two arrays (<code class="language-plaintext highlighter-rouge">static const char*</code>) to store the encoding for 26 letters of the alphabet, and 10 numerals. We can retrieve the encoding for a character by indexing into the array:</p><div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>static const char *alpha[] = {
+  // A = 0
+  ".-", 
+...
+}
+
+if (isalpha(c))
+  return alpha[toupper(c) - 'A'];
+</code></pre></div></div><h3 id="abusing-operator-overloading">(ab)using operator overloading</h3><p>Flashing an LED on ESP means toggling a GPIO pin high or low.</p><div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>digitalWrite(pin, HIGH);
+delay(for_ms);
+digitalWrite(pin, LOW);
+</code></pre></div></div><p>Given C++’s Unix legacy, redirecting messages and objects from input or to output feels “typical”. In the over-engineered Morse code project, we send messages to the Telegraph key. The standard C++ way to take input (<code class="language-plaintext highlighter-rouge">cin</code> is stdin) or print output (<code class="language-plaintext highlighter-rouge">cout</code> is stdout) is as follows:</p><div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>int i;
+cin &gt;&gt; i;
+cout &lt;&lt; i;
+</code></pre></div></div><p>It strikes me that Telegraph keys are conceptually character streams. They should behave similarly.</p><p>We overload <code class="language-plaintext highlighter-rouge">operator&lt;&lt;</code> to allow c++ style redirection. So you “send” a message to the telegraph key - which spits out Morse. If the telegraph key “knows” how to flash an LED, it flashes Morse code, if it knows how to talk to a serial port, it sends ascii characters to the console.</p><div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Telegraph key = ...;
+key &lt;&lt; "PARIS"
+</code></pre></div></div><p>Feels like most of what we do in these devices is to get input, minor processing, and sending out messages. So maybe there is a fair bit of operator overloading. Or maybe I really like operator overloading.</p><h3 id="sending-a-single-character-to-our-telegraph-key">Sending a single character to our telegraph key</h3><p>Each character (alpha or letter) expands into a sequence of signals (<code class="language-plaintext highlighter-rouge">.</code> or <code class="language-plaintext highlighter-rouge">-</code>). Fairly straightforward to iterate through the encoded sequence and either issue <code class="language-plaintext highlighter-rouge">.</code> or <code class="language-plaintext highlighter-rouge">-</code>.</p><div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// pull the GPIO up and down for a short duration
+void FlashTelegraphKey::dit() const;
+
+// pull the GPIO up and down for a long duration
+void FlashTelegraphKey::dah() const;
+
+TelegraphKey &amp; TelegraphKey::operator&lt;&lt;(const char c)
+{
+    const char *seq = getMorseSeq(c);
+
+    if (seq)
+    {
+        for (size_t i = 0; i &lt; strlen(seq); i++)
+        {
+            switch (seq[i])
+            {
+            case '.':
+                dit();
+                break;
+            case '-':
+                dah();
+                break;
+            case ' ':
+                break_();
+                break;
+            }
+        }
+        endchar();
+    }
+    return *this;
+}
+
+// now we can send single literal characters to the key
+key &lt;&lt; 'M';
+// we can chain multiple calls
+key &lt;&lt; 'S' &lt;&lt; 'O' &lt;&lt; 'S';
+</code></pre></div></div><p>Note the endchar() - this is merely a longer delay that signals that the character is complete. Returning the object from the method allows us to chain calls.</p><h3 id="sending-an-entire-word">Sending an entire word</h3><p>Once we have the ability to send a character, sending entire words is pretty clean. I feel this is where operator overloading makes code really elegant.</p><div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>TelegraphKey &amp; TelegraphKey::operator&lt;&lt;(const char *s)
+{
+    for (size_t i = 0; i &lt; strlen(s); i++) *this &lt;&lt; s[i];
+    return *this;
+}
+
+// sending entire words
+key &lt;&lt; "PARIS"
+</code></pre></div></div><h2 id="future-enhancements">Future enhancements</h2><ol><li>Given the static nature of this encoding table, we should probably be storing this in Flash memory.<li>C++ uses a traits class called <a href="https://en.cppreference.com/w/cpp/string/char_traits"><code class="language-plaintext highlighter-rouge">char_traits</code></a> which abstracts characters. We could define our own Morse character to help us get rid of the switch statement (a switch statement could be hiding a class hierarchy). Use of conversion cast operators could convert Ascii characters into our custom Morse characters. Morse characters could be sent to Telegraph key. I think this will further simplify the code.<li>The WiFi and webserver helpers abstract a lot of complexity but they mix C style strings. It would be interesting to rewrite the lower level libraries in pure C++. It should be possible approach the memory footprint of C in C++ - most of the heavy lifting is done by the compiler.</ol><hr><p><a href="/articles">← Back to all articles</a></p></article></main><div class="bottom-footer"> <span class="mini-note">You can contact me at: <a href="mailto:comments@chandru.blog">comments@chandru.blog</a></span></div><script type="text/x-mathjax-config"> MathJax.Hub.Config({ extensions: ["tex2jax.js", "TeX/AMSmath.js"], jax: ["input/TeX", "output/SVG"], }) </script> <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=default"> </script>
